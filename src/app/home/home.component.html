@@ -1,0 +1,74 @@
+<!-- Button trigger modal -->
+<div style="padding-top: 3em;">
+    <div class="text-center">
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenter">
+            Search Artist
+        </button>
+    </div>
+
+  <div class="container" style="padding: 0;margin-top: 1em;" [ngStyle]="{'box-shadow': shadowStyle ? '1px 3px 12px 1px' : '' }">
+    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist"> 
+        <li class="nav-item" id="tabinfo{{i}}"  *ngFor="let tab of tabName ; let i = index">
+          <a class="nav-link" [ngClass]="{'active' : ''}"  data-toggle="tab" href="#tab{{i}}" (click)="searchContent(tab)" role="tab"
+            aria-controls="tab1" aria-selected="true">{{tab}}</a>
+        </li>
+     </ul>
+
+       <div *ngFor="let tab of tabsContent; let i =index">
+           <div class="container" style="padding: 2em;">
+               <div>
+                   <label><strong>Artist-</strong></label><span > {{tab.name}}</span>
+               </div>
+               <div>
+                   <label><strong> Track-</strong></label><span >{{tab.track}}</span>
+                </div>
+                <div>
+                    <label><strong> Url -</strong></label><span style="font-size: 0.9em;">{{tab.artWork}}</span>
+                </div>
+            </div>
+       </div>
+ 
+</div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Enter Artist Name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> 
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="artistForm" (ngSubmit)="searchData()">
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" formControlName = "name" [ngClass]="{ 'is-invalid': form.name.touched && form.name.errors }">
+                <div *ngIf="form.name.errors" class="invalid-feedback">
+                    <div *ngIf="form.name.errors.required">Artist name is required</div>
+                  </div>
+              </div>
+              
+            </div>
+            <div class="form-group row">
+              <label for="noTracks" class="col-sm-3 col-form-label">No. Of Tracks</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="noTracks" formControlName = "numberOfTrack" [ngClass]="{ 'is-invalid': form.numberOfTrack.touched && form.numberOfTrack.errors }">
+                <div *ngIf="form.numberOfTrack.errors" class="invalid-feedback">
+                    <div *ngIf="form.numberOfTrack.errors.required">Track number is required</div>
+                  </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="searchTab()" [disabled]="artistForm.invalid"><a>Search</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
