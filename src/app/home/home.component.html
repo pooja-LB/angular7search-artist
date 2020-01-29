@@ -45,7 +45,7 @@
         <div class="modal-body">
           <form [formGroup]="artistForm" (ngSubmit)="searchData()">
             <div class="form-group row">
-              <label for="name" class="col-sm-3 col-form-label">Name</label>
+              <label for="name" class="col-sm-3 col-form-label" style="text-align: right;">Name</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" id="name" formControlName = "name" [ngClass]="{ 'is-invalid': form.name.touched && form.name.errors }">
                 <div *ngIf="form.name.errors" class="invalid-feedback">
@@ -55,7 +55,7 @@
               
             </div>
             <div class="form-group row">
-              <label for="noTracks" class="col-sm-3 col-form-label">No. Of Tracks</label>
+              <label for="noTracks" class="col-sm-3 col-form-label" style="text-align: right;">No. of Tracks</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" id="noTracks" formControlName = "numberOfTrack" [ngClass]="{ 'is-invalid': form.numberOfTrack.touched && form.numberOfTrack.errors }">
                 <div *ngIf="form.numberOfTrack.errors" class="invalid-feedback">
